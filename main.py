@@ -58,7 +58,7 @@ def have_user(id):
 # добавление проверки чтения книги
 def add_book(id, name_book):
     with connection:
-        return cursor.execute(f"UPDATE `users` SET `reading` = {name_book} WHERE `userid` = {id}")
+        return cursor.execute(f"UPDATE `users` SET `reading` = ? WHERE `userid` = ?", (name_book, id))
 
 
 # проверка чтения книги
@@ -171,10 +171,10 @@ async def back(message: types.Message):
 @dp.callback_query_handler(lambda mes: mes.data == "reading")
 async def reading(callback_query: types.CallbackQuery):
     id = callback_query.from_user.id
-    name = callback_query.message.text.split()
+    name = callback_query.message.text.split()[1]
     add_book(id, name)
     await bot.send_message(chat_id=id,
-                           text=f"Вы читали книгу: {name}",
+                           text=f"Вы теперь читаете книгу: {name}",
                            reply_markup=back_keyboard)
 
 

@@ -9,7 +9,7 @@ from aiogram.contrib.fsm_storage.memory import MemoryStorage
 storage = MemoryStorage()
 
 # создание чат-бота
-bot = Bot(token="6701467815:AAH3YpftH8bjOf5N3DPugz3k6uDV94zTRpE")
+bot = Bot(token="6846370297:AAEjo5bXy3Cdq_mObsqXtv3f1pDZhOT55Yk")
 dp = Dispatcher(bot, storage=storage)
 logging.basicConfig(level=logging.INFO)
 
